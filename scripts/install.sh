@@ -32,6 +32,17 @@ link_config() {
   log "Linked $dst"
 }
 
+link_file() {
+  local src="$1" dst="$2"
+  [[ -e "$src" ]] || return 0
+  if [[ -e "$dst" || -L "$dst" ]]; then
+    mkdir -p "$BACKUP"
+    mv "$dst" "$BACKUP/"
+  fi
+  ln -s "$src" "$dst"
+  log "Linked $dst"
+}
+
 install_list "$ROOT/packages/arch.txt" "sudo pacman"
 if command -v paru >/dev/null; then
   install_list "$ROOT/packages/aur.txt" paru
@@ -42,7 +53,10 @@ else
 fi
 
 mkdir -p "$CONFIG_HOME"
-for name in hypr quickshell ghostty fish; do link_config "$name"; done
+for name in hypr quickshell ghostty; do link_config "$name"; done
+link_file "$ROOT/config/zsh/.zshrc" "$HOME/.zshrc"
 
 log "Installed dotfiles. Existing configs, if any, were backed up to $BACKUP"
+log "Zsh is installed and configured, but the installer does not change your login shell."
+log "Run 'chsh -s /usr/bin/zsh' yourself if you want Zsh as the default shell."
 log "Log out and start Hyprland after reviewing monitor and autostart settings."
