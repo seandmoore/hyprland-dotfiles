@@ -49,6 +49,12 @@ hyprctl reload
 
 The installer does not change your login shell, configure a display manager, or delete backups. Do not run it as root.
 
+## Acknowledgments
+
+Created and maintained by Sean Moore, with development and documentation assistance from ChatGPT by OpenAI.
+
+ChatGPT is used as an AI development assistant and is not a GitHub account, repository collaborator, or legal copyright holder.
+
 ## License
 
 GPL-3.0-only. See [LICENSE](LICENSE).
