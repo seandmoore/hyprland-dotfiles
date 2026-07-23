@@ -19,7 +19,7 @@ cliphist
 grim
 slurp
 swappy
-fish
+zsh
 starship
 fastfetch
 btop
