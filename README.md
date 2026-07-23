@@ -1,6 +1,6 @@
 # Hyprland Dotfiles
 
-A clean starting point for a modern Hyprland desktop using the current Lua configuration format, Quickshell, Ghostty, Walker, and Catppuccin Mocha.
+A clean starting point for a modern Hyprland desktop using the current Lua configuration format, Quickshell, Ghostty, Walker, Zsh, and Catppuccin Mocha.
 
 ## Status
 
@@ -13,9 +13,9 @@ config/hypr/                    Hyprland, Hyprlock, Hypridle, Hyprpaper
 config/hypr/modules/            Modular Lua configuration
 config/quickshell/sean-shell/   Quickshell shell and future widgets
 config/ghostty/                 Ghostty terminal configuration
-config/fish/                    Fish shell configuration
+config/zsh/                     Zsh interactive shell configuration
 packages/                       Arch repository and optional AUR lists
-scripts/                        Installer, uninstaller, and health check
+scripts/                        Bash installer, uninstaller, and health check
 wallpapers/                     User-provided wallpapers
 screenshots/                    Repository screenshots
 ```
@@ -29,7 +29,17 @@ chmod +x scripts/*.sh
 ./scripts/install.sh
 ```
 
-The installer targets Arch-based systems, installs required packages, backs up existing managed configuration directories, and creates symlinks from `~/.config` into the repository.
+The installer targets Arch-based systems, installs required packages, backs up existing managed configuration directories, and creates symlinks from the repository into your home directory.
+
+Zsh is installed and configured as the preferred interactive shell. The installer deliberately does not change your login shell automatically. To make Zsh your default after installation, run:
+
+```bash
+chsh -s /usr/bin/zsh
+```
+
+Log out and back in for the login-shell change to take effect.
+
+Project automation remains written in Bash for portability and compatibility with Codex, CI environments, and other Arch-based systems.
 
 ## Validate
 
