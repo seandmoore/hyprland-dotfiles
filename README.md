@@ -2,6 +2,9 @@
 
 A clean starting point for a modern Hyprland desktop using the current Lua configuration format, Quickshell, Ghostty, Zsh, and Catppuccin Mocha.
 
+> [!WARNING]
+> This is an AI-assisted ("vibe coded") personal dotfiles project. Review the scripts and configuration before using them. Use at your own risk.
+
 ## Status
 
 This repository is an early scaffold. Review monitor, launcher, wallpaper, and autostart settings before using it as your daily desktop.
@@ -58,6 +61,10 @@ hyprctl reload
 4. Expand the Quickshell shell one component at a time.
 
 ## Safety
+
+This repository is developed with significant assistance from OpenAI Codex/ChatGPT using an AI-assisted ("vibe coding") workflow. It may contain mistakes, incomplete configuration, or assumptions that do not fit every system.
+
+Review every script and configuration file before running the installer, especially on a production machine. You are responsible for any changes made to your system.
 
 The installer does not change your login shell, configure a display manager, or delete backups. Do not run it as root.
 
