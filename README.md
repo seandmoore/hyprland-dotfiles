@@ -51,9 +51,9 @@ The installer does not change your login shell, configure a display manager, or 
 
 ## Acknowledgments
 
-Created and maintained by Sean Moore, with development and documentation assistance from ChatGPT by OpenAI.
+Created and maintained by Sean Moore, with development and documentation assistance from OpenAI Codex (ChatGPT).
 
-ChatGPT is used as an AI development assistant and is not a GitHub account, repository collaborator, or legal copyright holder.
+Codex-assisted commits use GitHub's linked Codex co-author identity so the contribution history remains transparent.
 
 ## License
 
