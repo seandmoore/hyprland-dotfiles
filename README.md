@@ -1,6 +1,6 @@
 # Hyprland Dotfiles
 
-A clean starting point for a modern Hyprland desktop using the current Lua configuration format, Quickshell, Ghostty, Walker, Zsh, and Catppuccin Mocha.
+A clean starting point for a modern Hyprland desktop using the current Lua configuration format, Quickshell, Ghostty, Zsh, and Catppuccin Mocha.
 
 ## Status
 
@@ -11,7 +11,7 @@ This repository is an early scaffold. Review monitor, launcher, wallpaper, and a
 ```text
 config/hypr/                    Hyprland, Hyprlock, Hypridle, Hyprpaper
 config/hypr/modules/            Modular Lua configuration
-config/quickshell/sean-shell/   Quickshell shell and future widgets
+config/quickshell/sean-shell/   Quickshell shell, launcher, and future widgets
 config/ghostty/                 Ghostty terminal configuration
 config/zsh/                     Zsh interactive shell configuration
 packages/                       Arch repository and optional AUR lists
@@ -30,6 +30,8 @@ chmod +x scripts/*.sh
 ```
 
 The installer targets Arch-based systems, installs required packages, backs up existing managed configuration directories, and creates symlinks from the repository into your home directory.
+
+Quickshell is the intended interface for the launcher, panels, overlays, and related desktop widgets, so no separate application launcher is installed.
 
 Zsh is installed and configured as the preferred interactive shell. The installer deliberately does not change your login shell automatically. To make Zsh your default after installation, run:
 
