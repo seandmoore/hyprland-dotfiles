@@ -3,6 +3,7 @@ local mod = "SUPER"
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mod .. " + G", hl.dsp.exec_cmd("hypr-gaming-mode auto"))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen())

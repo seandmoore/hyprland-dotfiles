@@ -26,3 +26,14 @@ jq
 nwg-look
 papirus-icon-theme
 ttf-jetbrains-mono-nerd
+
+# Steam Gaming Mode and notifications
+steam
+gamescope
+libnotify
+
+# GTK/libadwaita desktop applications
+mission-center
+loupe
+papers
+gnome-text-editor
