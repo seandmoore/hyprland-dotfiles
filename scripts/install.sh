@@ -26,7 +26,10 @@ install_list() {
 }
 
 link_config() {
-  local name="$1" src="$ROOT/config/$name" dst="$CONFIG_HOME/$name"
+  local name="$1"
+  local src="$ROOT/config/$name"
+  local dst="$CONFIG_HOME/$name"
+
   [[ -e "$src" ]] || return 0
   if [[ -e "$dst" || -L "$dst" ]]; then
     mkdir -p "$BACKUP"
@@ -37,7 +40,9 @@ link_config() {
 }
 
 link_file() {
-  local src="$1" dst="$2"
+  local src="$1"
+  local dst="$2"
+
   [[ -e "$src" ]] || return 0
   if [[ -e "$dst" || -L "$dst" ]]; then
     mkdir -p "$BACKUP"
