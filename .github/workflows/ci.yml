@@ -42,9 +42,10 @@ jobs:
             luac -p "$config"
           done < <(find config -type f -name '*.lua' -print0)
 
-      - name: Verify repository links and package lists
+      - name: Verify repository structure
         run: |
           test -f README.md
           test -f LICENSE
-          test -s packages/official.txt
+          test -s packages/arch.txt
+          test -f packages/aur.txt
           find config scripts -type l -exec test -e {} \;
