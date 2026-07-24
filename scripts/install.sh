@@ -14,11 +14,15 @@ die() { printf '\033[1;31merror:\033[0m %s\n' "$*" >&2; exit 1; }
 command -v pacman >/dev/null || die "This installer currently supports Arch-based systems."
 
 install_list() {
-  local file="$1" installer="$2"
+  local file="$1"
+  shift
   [[ -f "$file" ]] || return 0
-  mapfile -t pkgs < <(grep -Ev '^[[:space:]]*(#|$)' "$file")
-  ((${#pkgs[@]})) || return 0
-  "$installer" -S --needed --noconfirm "${pkgs[@]}"
+
+  local -a packages=()
+  mapfile -t packages < <(grep -Ev '^[[:space:]]*(#|$)' "$file")
+  ((${#packages[@]})) || return 0
+
+  "$@" -S --needed --noconfirm "${packages[@]}"
 }
 
 link_config() {
@@ -43,7 +47,7 @@ link_file() {
   log "Linked $dst"
 }
 
-install_list "$ROOT/packages/arch.txt" "sudo pacman"
+install_list "$ROOT/packages/arch.txt" sudo pacman
 if command -v paru >/dev/null; then
   install_list "$ROOT/packages/aur.txt" paru
 elif command -v yay >/dev/null; then
@@ -53,7 +57,9 @@ else
 fi
 
 mkdir -p "$CONFIG_HOME"
-for name in hypr quickshell ghostty; do link_config "$name"; done
+for name in hypr quickshell ghostty; do
+  link_config "$name"
+done
 link_file "$ROOT/config/zsh/.zshrc" "$HOME/.zshrc"
 
 log "Installed dotfiles. Existing configs, if any, were backed up to $BACKUP"
