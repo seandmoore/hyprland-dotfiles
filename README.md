@@ -1,13 +1,13 @@
 # Hyprland Dotfiles
 
-A clean starting point for a modern Hyprland desktop using the current Lua configuration format, Quickshell, Ghostty, Zsh, and Catppuccin Mocha.
+A clean starting point for a modern Hyprland desktop using the current Lua configuration format, Quickshell, Ghostty, Zsh, Catppuccin Mocha, a GTK/libadwaita application stack, and optional Steam Gaming Mode integration.
 
 > [!WARNING]
 > This is an AI-assisted ("vibe coded") personal dotfiles project. Review the scripts and configuration before using them. Use at your own risk.
 
 ## Status
 
-This repository is an early scaffold. Review monitor, launcher, wallpaper, and autostart settings before using it as your daily desktop.
+This repository is an early scaffold. Review monitor, launcher, wallpaper, autostart, and Gaming Mode settings before using it as your daily desktop.
 
 ## Structure
 
@@ -17,8 +17,9 @@ config/hypr/modules/            Modular Lua configuration
 config/quickshell/sean-shell/   Quickshell shell, launcher, and future widgets
 config/ghostty/                 Ghostty terminal configuration
 config/zsh/                     Zsh interactive shell configuration
+docs/                           Setup notes, including Steam Gaming Mode
 packages/                       Arch repository and optional AUR lists
-scripts/                        Bash installer, uninstaller, and health check
+scripts/                        Bash installer, uninstaller, health check, and Gaming Mode launcher
 wallpapers/                     User-provided wallpapers
 screenshots/                    Repository screenshots
 ```
@@ -46,6 +47,24 @@ Log out and back in for the login-shell change to take effect.
 
 Project automation remains written in Bash for portability and compatibility with Codex, CI environments, and other Arch-based systems.
 
+## Steam Gaming Mode
+
+The installer adds `hypr-gaming-mode` to `~/.local/bin` and binds **Super+G** to automatic mode.
+
+```bash
+hypr-gaming-mode auto
+hypr-gaming-mode nested
+hypr-gaming-mode session
+```
+
+`auto` uses a dedicated session when a supported `steamos-session-select` helper is available and otherwise launches Steam Gamepad UI inside fullscreen Gamescope. The script intentionally avoids forcefully terminating Hyprland when no safe session switcher is present.
+
+See [`docs/gaming-mode.md`](docs/gaming-mode.md) for dedicated-session setup, display selection, and limitations.
+
+## GTK-focused desktop apps
+
+The default package list favors GTK/libadwaita applications, including Nautilus, Mission Center, Loupe, Papers, and GNOME Text Editor. This keeps the Hyprland desktop visually consistent without requiring the full GNOME desktop environment.
+
 ## Validate
 
 ```bash
@@ -59,6 +78,7 @@ hyprctl reload
 2. Add a wallpaper to `wallpapers/` and update `config/hypr/hyprpaper.conf`.
 3. Review `config/hypr/modules/autostart.lua`.
 4. Expand the Quickshell shell one component at a time.
+5. Test Gaming Mode in nested mode before configuring a dedicated session.
 
 ## Safety
 
