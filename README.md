@@ -33,7 +33,7 @@ chmod +x scripts/*.sh
 ./scripts/install.sh
 ```
 
-The installer targets Arch-based systems, installs required packages, backs up existing managed configuration directories, and creates symlinks from the repository into your home directory.
+The installer targets Arch-based systems, validates package and XDG paths, installs required packages, keeps backups private to your user, and creates symlinks from the repository into your home directory. The uninstaller removes only symlinks that still point back to this repository and preserves unrelated replacements.
 
 Quickshell is the intended interface for the launcher, panels, overlays, and related desktop widgets, so no separate application launcher is installed.
 
