@@ -7,12 +7,18 @@ STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 BIN_HOME="${XDG_BIN_HOME:-$HOME/.local/bin}"
 BACKUP="$STATE_HOME/hyprland-dotfiles/backups/$(date +%Y%m%d-%H%M%S)"
 
+umask 077
+
 log() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[1;33mwarning:\033[0m %s\n' "$*" >&2; }
 die() { printf '\033[1;31merror:\033[0m %s\n' "$*" >&2; exit 1; }
 
 [[ $EUID -ne 0 ]] || die "Run as your normal user, not root."
 command -v pacman >/dev/null || die "This installer currently supports Arch-based systems."
+[[ "$HOME" == /* ]] || die "HOME must be an absolute path."
+[[ "$CONFIG_HOME" == /* ]] || die "XDG_CONFIG_HOME must be an absolute path."
+[[ "$STATE_HOME" == /* ]] || die "XDG_STATE_HOME must be an absolute path."
+[[ "$BIN_HOME" == /* ]] || die "XDG_BIN_HOME must be an absolute path."
 
 install_list() {
   local file="$1"
@@ -23,7 +29,12 @@ install_list() {
   mapfile -t packages < <(grep -Ev '^[[:space:]]*(#|$)' "$file")
   ((${#packages[@]})) || return 0
 
-  "$@" -S --needed --noconfirm "${packages[@]}"
+  local package
+  for package in "${packages[@]}"; do
+    [[ "$package" =~ ^[a-zA-Z0-9@._+:-]+$ ]] || die "Invalid package name in $file: $package"
+  done
+
+  "$@" -S --needed --noconfirm -- "${packages[@]}"
 }
 
 link_path() {
@@ -33,9 +44,9 @@ link_path() {
   [[ -e "$src" ]] || return 0
   if [[ -e "$dst" || -L "$dst" ]]; then
     mkdir -p "$BACKUP"
-    mv "$dst" "$BACKUP/"
+    mv -- "$dst" "$BACKUP/"
   fi
-  ln -s "$src" "$dst"
+  ln -s -- "$src" "$dst"
   log "Linked $dst"
 }
 
