@@ -1,7 +1,20 @@
 import Quickshell
+import Quickshell.Io
 import QtQuick
 
 ShellRoot {
+    Launcher {
+        id: launcher
+    }
+
+    IpcHandler {
+        target: "launcher"
+
+        function open(): void { launcher.showLauncher() }
+        function close(): void { launcher.hideLauncher() }
+        function toggle(): void { launcher.toggleLauncher() }
+    }
+
     Variants {
         model: Quickshell.screens
         PanelWindow {

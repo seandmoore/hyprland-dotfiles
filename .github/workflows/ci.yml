@@ -33,10 +33,10 @@ jobs:
         run: |
           while IFS= read -r -d '' script; do
             bash -n "$script"
-          done < <(find scripts -type f -name '*.sh' -print0)
+          done < <(find install.sh scripts -type f -name '*.sh' -print0)
 
       - name: Run ShellCheck
-        run: shellcheck scripts/*.sh
+        run: shellcheck install.sh scripts/*.sh
 
       - name: Check Lua syntax
         run: |
@@ -48,6 +48,7 @@ jobs:
         run: |
           test -f README.md
           test -f LICENSE
+          test -f install.sh
           test -s packages/arch.txt
           test -f packages/aur.txt
           find config scripts -type l -exec test -e {} \;
