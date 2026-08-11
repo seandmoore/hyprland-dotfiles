@@ -26,6 +26,24 @@ screenshots/                    Repository screenshots
 
 ## Install
 
+On an Arch-based system, download the repository and run its installer with:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/seandmoore/hyprland-dotfiles/main/install.sh | bash
+```
+
+The bootstrap installs Git when needed, clones the repository to `~/.local/share/hyprland-dotfiles`, and runs `scripts/install.sh`. Running it again safely fast-forwards a clean checkout before reinstalling. It stops if the checkout has local changes or an unexpected Git remote.
+
+To review the downloaded bootstrap before running it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/seandmoore/hyprland-dotfiles/main/install.sh -o /tmp/hyprland-dotfiles-install.sh
+less /tmp/hyprland-dotfiles-install.sh
+bash /tmp/hyprland-dotfiles-install.sh
+```
+
+You can still install from a manual clone:
+
 ```bash
 git clone https://github.com/seandmoore/hyprland-dotfiles.git
 cd hyprland-dotfiles
