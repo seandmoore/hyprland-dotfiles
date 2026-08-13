@@ -14,7 +14,7 @@ This repository is an early scaffold. Review monitor, launcher, wallpaper, autos
 ```text
 config/hypr/                    Hyprland, Hyprlock, Hypridle, Hyprpaper
 config/hypr/modules/            Modular Lua configuration
-config/quickshell/sean-shell/   Quickshell shell, launcher, and future widgets
+config/quickshell/sean-shell/   Quickshell panel, searchable app launcher, and future widgets
 config/ghostty/                 Ghostty terminal configuration
 config/zsh/                     Zsh interactive shell configuration
 docs/                           Setup notes, including Steam Gaming Mode
@@ -54,6 +54,7 @@ chmod +x scripts/*.sh
 The installer targets Arch-based systems, validates package and XDG paths, installs required packages, keeps backups private to your user, and creates symlinks from the repository into your home directory. The uninstaller removes only symlinks that still point back to this repository and preserves unrelated replacements.
 
 Quickshell is the intended interface for the launcher, panels, overlays, and related desktop widgets, so no separate application launcher is installed.
+Press **Super+Space** to toggle the searchable application launcher. The keybind calls the running `sean-shell` instance over Quickshell IPC, and launching an entry uses its parsed desktop-file command.
 
 Zsh is installed and configured as the preferred interactive shell. The installer deliberately does not change your login shell automatically. To make Zsh your default after installation, run:
 
