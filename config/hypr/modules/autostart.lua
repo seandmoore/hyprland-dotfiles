@@ -1,5 +1,6 @@
 hl.on("hyprland.start", function()
   hl.exec_cmd("quickshell -c sean-shell")
   hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("hypridle")
   hl.exec_cmd("nm-applet --indicator")
 end)

@@ -3,6 +3,11 @@ import Quickshell.Io
 import QtQuick
 
 ShellRoot {
+    SystemClock {
+        id: clock
+        precision: SystemClock.Minutes
+    }
+
     Launcher {
         id: launcher
     }
@@ -34,7 +39,7 @@ ShellRoot {
 
                 Text {
                     anchors.centerIn: parent
-                    text: Qt.formatDateTime(new Date(), "ddd, MMM d  •  h:mm AP")
+                    text: Qt.formatDateTime(clock.date, "ddd, MMM d  •  h:mm AP")
                     color: "#cdd6f4"
                     font.pixelSize: 13
                 }
