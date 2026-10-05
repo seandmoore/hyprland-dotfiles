@@ -44,6 +44,9 @@ jobs:
             luac -p "$config"
           done < <(find config -type f -name '*.lua' -print0)
 
+      - name: Test configuration module paths
+        run: lua tests/config-path.lua config/hypr/hyprland.lua
+
       - name: Verify repository structure
         run: |
           test -f README.md
